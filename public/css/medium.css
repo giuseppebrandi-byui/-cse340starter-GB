@@ -1,0 +1,50 @@
+@media all and (min-width: 600px) {
+  .grid--2-cols {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .upgrades-section {
+    order: 1;
+  }
+
+  .reviews-section {
+    order: 2;
+  }
+}
+
+@media all and (min-width: 480px) {
+  nav ul {
+    justify-content: space-around;
+    flex-direction: row;
+  }
+
+  body {
+    background-image: url("../images/site/small_check.jpg");
+    background-size: 100%;
+    margin: 4rem;
+  }
+
+  #wrapper {
+    background: #ffffff;
+    border: 5px solid #002980;
+    border-radius: 9px;
+  }
+
+  aside {
+    transform: translate(42%, -10%);
+    line-height: 0.6;
+  }
+
+  aside h2 {
+    font-size: 2.2rem;
+  }
+
+  aside p {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
+  aside p:last-of-type {
+    margin-bottom: 4rem;
+  }
+}
