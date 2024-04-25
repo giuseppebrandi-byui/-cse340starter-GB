@@ -94,9 +94,9 @@ img {
 }
 
 .welcome-msg {
-  margin-bottom: 9.6rem;
+  margin-bottom: 6.4rem;
   margin-left: 2rem;
-  font-size: 3rem;
+  font-size: 2.4rem;
 }
 
 .hero-section {
@@ -109,7 +109,16 @@ aside {
   background-color: rgba(242, 242, 242, 0.4);
   color: #4c96d6;
   transform: translate(20%, -30%);
-  line-height: 1;
+}
+
+aside ul {
+  list-style-type: none;
+  padding-left: 0;
+  line-height: 1.6;
+}
+
+aside ul li {
+  font-weight: 700;
 }
 
 .grid {
@@ -159,6 +168,10 @@ aside {
 .upgrade-img {
   background-color: #4c96d6;
   padding: 1rem 0;
+}
+
+.info {
+  margin-bottom: 4.8rem;
 }
 
 footer {
