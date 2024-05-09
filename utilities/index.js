@@ -6,7 +6,6 @@ const Util = {};
  ************************** */
 Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications();
-  // console.log(data);
   let list = "<ul>";
   list += '<li><a href="/" title="Home page">Home</a></li>';
   data.rows.forEach((row) => {
@@ -82,10 +81,15 @@ Util.buildClassificationGrid = async function (data) {
  * Build the chosen vehicle view HTML
  * ************************************ */
 Util.buildSingleVehiclePage = async function (vehicle) {
-  let grid;
-  grid = '<div id="inv-display" class="grid grid--2-cols grid--3-cols">';
-  grid += "<div class='vehicle-card'>";
-  grid +=
+  let carDetailsGrid;
+  carDetailsGrid = "<h2>";
+  carDetailsGrid += vehicle.inv_make + " " + vehicle.inv_model;
+  carDetailsGrid += "</h2>";
+
+  carDetailsGrid += '<div id="inv-display" class="grid grid--2-cols">';
+
+  carDetailsGrid += "<div>";
+  carDetailsGrid +=
     '<a href="../../inv/detail/' +
     vehicle.inv_id +
     '" title="View ' +
@@ -99,30 +103,40 @@ Util.buildSingleVehiclePage = async function (vehicle) {
     " " +
     vehicle.inv_model +
     ' on CSE Motors" /></a>';
-  grid += '<div class="namePrice">';
-  grid += "<hr />";
-  grid += "<h2>";
-  grid +=
-    '<a href="../../inv/detail/' +
-    vehicle.inv_id +
-    '" title="View ' +
-    vehicle.inv_make +
-    " " +
-    vehicle.inv_model +
-    ' details">' +
-    vehicle.inv_make +
-    " " +
-    vehicle.inv_model +
-    "</a>";
-  grid += "</h2>";
-  grid +=
-    "<span class='vehiclePrice'>$" +
-    new Intl.NumberFormat("en-US").format(vehicle.inv_price) +
-    "</span>";
-  grid += "</div>";
-  grid += "</div>";
-  grid += "</div>";
-  return grid;
+  carDetailsGrid += "</div>";
+
+  carDetailsGrid += "<div>"; // Open div details section
+  carDetailsGrid += "<div class='prominent'>"; // Open div prominent section
+  carDetailsGrid += "<h3>";
+  carDetailsGrid +=
+    " " + vehicle.inv_year + "  " + vehicle.inv_make + " " + vehicle.inv_model;
+  carDetailsGrid += "</h3>";
+
+  carDetailsGrid += "<h3>";
+  carDetailsGrid +=
+    "$" + new Intl.NumberFormat("en-US").format(vehicle.inv_price);
+  carDetailsGrid += "</h3>";
+  carDetailsGrid += "</div>"; // Close div prominent section
+
+  carDetailsGrid += "<div>"; // Open div more details section
+  carDetailsGrid += "<p>";
+  carDetailsGrid +=
+    "<span class='label'>Mileage:</span> " + vehicle.inv_miles.toLocaleString();
+  carDetailsGrid += "</p>";
+
+  carDetailsGrid += "<p>";
+  carDetailsGrid += "<span class='label'>Color:</span> " + vehicle.inv_color;
+  carDetailsGrid += "</p>";
+
+  carDetailsGrid += "<p>";
+  carDetailsGrid +=
+    "<span class='label'>Description:</span> " + vehicle.inv_description;
+  carDetailsGrid += "</p>";
+
+  carDetailsGrid += "</div>"; // Close div more details section
+
+  carDetailsGrid += "</div>"; // Close grid
+  return carDetailsGrid;
 };
 
 /* ****************************************
