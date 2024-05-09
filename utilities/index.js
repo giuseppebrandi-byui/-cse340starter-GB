@@ -6,7 +6,7 @@ const Util = {};
  ************************** */
 Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications();
-  console.log(data);
+  // console.log(data);
   let list = "<ul>";
   list += '<li><a href="/" title="Home page">Home</a></li>';
   data.rows.forEach((row) => {
@@ -31,9 +31,9 @@ Util.getNav = async function (req, res, next) {
 Util.buildClassificationGrid = async function (data) {
   let grid;
   if (data.length > 0) {
-    grid = '<ul id="inv-display">';
+    grid = '<div id="inv-display" class="grid grid--2-cols grid--3-cols">';
     data.forEach((vehicle) => {
-      grid += "<li>";
+      grid += "<div class='vehicle-card'>";
       grid +=
         '<a href="../../inv/detail/' +
         vehicle.inv_id +
@@ -65,16 +65,63 @@ Util.buildClassificationGrid = async function (data) {
         "</a>";
       grid += "</h2>";
       grid +=
-        "<span>$" +
+        "<span class='vehiclePrice'>$" +
         new Intl.NumberFormat("en-US").format(vehicle.inv_price) +
         "</span>";
       grid += "</div>";
-      grid += "</li>";
+      grid += "</div>";
     });
-    grid += "</ul>";
+    grid += "</div>";
   } else {
     grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>';
   }
+  return grid;
+};
+
+/* **************************************
+ * Build the chosen vehicle view HTML
+ * ************************************ */
+Util.buildSingleVehiclePage = async function (vehicle) {
+  let grid;
+  grid = '<div id="inv-display" class="grid grid--2-cols grid--3-cols">';
+  grid += "<div class='vehicle-card'>";
+  grid +=
+    '<a href="../../inv/detail/' +
+    vehicle.inv_id +
+    '" title="View ' +
+    vehicle.inv_make +
+    " " +
+    vehicle.inv_model +
+    'details"><img src="' +
+    vehicle.inv_image +
+    '" alt="Image of ' +
+    vehicle.inv_make +
+    " " +
+    vehicle.inv_model +
+    ' on CSE Motors" /></a>';
+  grid += '<div class="namePrice">';
+  grid += "<hr />";
+  grid += "<h2>";
+  grid +=
+    '<a href="../../inv/detail/' +
+    vehicle.inv_id +
+    '" title="View ' +
+    vehicle.inv_make +
+    " " +
+    vehicle.inv_model +
+    ' details">' +
+    vehicle.inv_make +
+    " " +
+    vehicle.inv_model +
+    "</a>";
+  grid += "</h2>";
+  grid +=
+    "<span class='vehiclePrice'>$" +
+    new Intl.NumberFormat("en-US").format(vehicle.inv_price) +
+    "</span>";
+  grid += "</div>";
+  grid += "</div>";
+  grid += "</div>";
   return grid;
 };
 
