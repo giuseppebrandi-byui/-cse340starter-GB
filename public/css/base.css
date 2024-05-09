@@ -35,6 +35,12 @@ body {
   margin: 0 auto;
 }
 
+.container {
+  max-width: 110rem;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
 .siteName a {
   font-size: 3rem;
   text-decoration: none;
@@ -200,6 +206,17 @@ aside ul li {
 
 .vehiclePrice {
   font-size: 1.6rem;
+}
+
+.prominent {
+  background-color: rgba(76, 150, 214, 0.5);
+  padding: 0.3rem 1rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.label {
+  font-weight: 600;
 }
 
 footer {
