@@ -223,3 +223,42 @@ footer {
   margin-left: 2rem;
   padding-bottom: 2rem;
 }
+
+/* ------ FORM ------*/
+
+form fieldset {
+  margin: 2rem 0;
+  border: 1px solid #002980;
+  border-radius: 9px;
+  padding: 0.5rem 2%;
+}
+
+form legend {
+  margin: 0 1rem;
+  padding: 0 0.5rem;
+}
+
+form label.top {
+  display: block;
+  padding-top: 1rem;
+  font-size: 1.6rem;
+}
+
+form label.top input {
+  display: block;
+  font-size: 1.6rem;
+  border: 1px solid #999;
+  border-radius: 4px;
+  padding: 1rem;
+  width: 100%;
+}
+
+form input.submitBtn {
+  display: block;
+  border: none;
+  background-color: #ccc;
+  border-radius: 15px;
+  padding: 1rem 3rem;
+  margin: 2rem 0 2rem 0;
+  width: 100%;
+}

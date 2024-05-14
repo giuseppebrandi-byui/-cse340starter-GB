@@ -57,4 +57,12 @@
   aside ul li:last-of-type {
     margin-bottom: 3rem;
   }
+
+  form label.top input {
+    width: 70%;
+  }
+
+  form input.submitBtn {
+    width: 20%;
+  }
 }
