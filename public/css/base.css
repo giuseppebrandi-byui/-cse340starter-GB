@@ -253,12 +253,16 @@ form label.top input {
   width: 100%;
 }
 
-form input.submitBtn {
+form input.submitBtn,
+form input.registerBtn {
   display: block;
   border: none;
-  background-color: #ccc;
+  background-color: #4c96d6;
   border-radius: 15px;
   padding: 1rem 3rem;
   margin: 2rem 0 2rem 0;
   width: 100%;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
 }

@@ -1,0 +1,30 @@
+<div class="container">
+  <% if (title) { %>
+  <h1><%= title %></h1>
+  <% } else { res.redirect('/') } %> <%# messages() %>
+  <form method="get" action="#">
+    <fieldset>
+      <legend>Register</legend>
+      <label class="top" for="fName"
+        >First Name*:
+        <input type="text" id="fName" name="account_firstname" required
+      /></label>
+      <label class="top" for="lName"
+        >Last Name*:
+        <input type="text" id="lName" name="account_lastname" required
+      /></label>
+      <label class="top" for="email"
+        >Email*: <input type="email" id="email" name="account_email" required
+      /></label>
+      <label class="top" for="pwd"
+        >Password*:
+        <input type="password" id="pwd" name="account_password" required
+      /></label>
+      <p>
+        Passwords must be minimum of 12 characters and include 1 capital letter,
+        1 number and 1 special character.
+      </p>
+      <input type="submit" value="Register" class="registerBtn" />
+    </fieldset>
+  </form>
+</div>

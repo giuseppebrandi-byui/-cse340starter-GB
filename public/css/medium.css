@@ -62,7 +62,8 @@
     width: 70%;
   }
 
-  form input.submitBtn {
+  form input.submitBtn,
+  form input.registerBtn {
     width: 20%;
   }
 }
