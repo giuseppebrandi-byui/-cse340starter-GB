@@ -16,11 +16,20 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin));
 
 /* ***********************************
  * Deliver Registration View
- * deliver login view activity
+ * deliver registration view activity
  * ******************************** */
 router.get(
   "/register",
   utilities.handleErrors(accountController.buildRegister)
+);
+
+/* ***********************************
+ * Process Registration
+ * process registration activity
+ * ******************************** */
+router.post(
+  "/register",
+  utilities.handleErrors(accountController.registerAccount)
 );
 
 module.exports = router;
