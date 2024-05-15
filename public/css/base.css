@@ -266,3 +266,12 @@ form input.registerBtn {
   font-weight: 600;
   cursor: pointer;
 }
+
+input:required:invalid,
+input:focus:invalid {
+  background-color: #cccccc;
+}
+
+input:required:valid {
+  background-color: #4c96d664;
+}
