@@ -1,13 +1,7 @@
 <div class="container">
   <% if (title) { %>
   <h1><%= title %></h1>
-  <% } else { res.redirect('/') } %> <%- messages() %> <% if (errors) { %>
-  <ul class="notice">
-    <% errors.array().forEach(error => { %>
-    <li><%= error.msg %></li>
-    <% }) %>
-  </ul>
-  <% } %>
+  <% } else { res.redirect('/') } %> <%- messages() %>
   <form id="loginForm" action="/account/login" method="post">
     <fieldset>
       <legend>Login</legend>
