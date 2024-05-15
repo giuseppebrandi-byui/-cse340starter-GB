@@ -15,11 +15,21 @@
       <legend>Register</legend>
       <label class="top" for="fName"
         >First Name:
-        <input type="text" id="fName" name="account_firstname" required
+        <input
+          type="text"
+          id="fName"
+          name="account_firstname"
+          required
+          value="<%= locals.account_firstname %>"
       /></label>
       <label class="top" for="lName"
         >Last Name:
-        <input type="text" id="lName" name="account_lastname" required
+        <input
+          type="text"
+          id="lName"
+          name="account_lastname"
+          required
+          value="<%= locals.account_lastname %>"
       /></label>
       <label class="top" for="email"
         >Email:
@@ -29,6 +39,7 @@
           name="account_email"
           required
           placeholder="Enter a valid email address"
+          value="<%= locals.account_email %>"
       /></label>
       <label class="top" for="pwd"
         >Password:
