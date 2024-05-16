@@ -63,7 +63,8 @@
   }
 
   form input.submitBtn,
-  form input.registerBtn {
+  form input.registerBtn,
+  form input.submitClassificationBtn {
     width: 20%;
   }
 }

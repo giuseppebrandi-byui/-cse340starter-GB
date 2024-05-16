@@ -126,4 +126,43 @@ validate.checkLoginData = async (req, res, next) => {
   next();
 };
 
+/*  **********************************
+ *  Classification validation rules
+ * ********************************* */
+validate.classificationValidate = () => {
+  return [
+    // valid email is required and cannot already exist in the DB
+    body("classification_name")
+      .trim()
+      .notEmpty()
+      .escape()
+      .isLength({ min: 2 })
+      .withMessage("A valid classification is required.")
+      .custom(async (account_email) => {
+        // TO DO Create a new validation file
+        // Move function classificationValidate
+        // Create a check function inside inventory model
+        // Call the new check function here:
+        const classificationName = await accountModel.checkExistingEmail(
+          account_email
+        );
+        if (emailExists) {
+          throw new Error("Email exists. Please log in or use different email");
+        }
+      }),
+    // password is required and must be strong password
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("Password does not meet requirements."),
+  ];
+};
+
 module.exports = validate;

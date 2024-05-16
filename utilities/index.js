@@ -139,6 +139,49 @@ Util.buildSingleVehiclePage = async function (vehicle) {
   return carDetailsGrid;
 };
 
+/* ************************
+ * Constructs the management links
+ ************************** */
+Util.buildManagementLink = async function (links) {
+  let linkMgt = "";
+  links.forEach((link) => {
+    linkMgt += `<a href="${link.url}">${link.name}</a><br/>`;
+  });
+  return linkMgt;
+};
+
+Util.buildClassificationForm = async function (locals) {
+  let form = "";
+  form += `<form
+    id="addClassificationForm"
+    action="/inventory/add-classification"
+    method="post"
+  >
+    <fieldset>
+      <legend>Add New Classification</legend>
+      <p>Field is required.</p>
+      <label class="top" for="classification"
+        >Classification Name:
+        <p>Name must be alphabetic characters only, no spaces.</p>
+        <input
+          type="text"
+          id="classification"
+          name="classification_name"
+          required
+          pattern="^[A-Za-z][A-Za-z]*$"
+          value='${locals.classification_name ?? ""}'
+      /></label>
+
+      <input
+        type="submit"
+        value="Add Classification"
+        class="submitClassificationBtn"
+      />
+    </fieldset>
+  </form>`;
+  return form;
+};
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for

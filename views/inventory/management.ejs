@@ -1,0 +1,5 @@
+<div class="container">
+  <% if (title) { %>
+  <h1><%= title %></h1>
+  <%- managmentLinks %> <% } else { res.redirect('/') } %> <%- messages() %>
+</div>

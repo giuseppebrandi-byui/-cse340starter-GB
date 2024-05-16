@@ -1,0 +1,60 @@
+<div class="container">
+  <% if (title) { %>
+  <h1><%= title %></h1>
+  <% } else { res.redirect('/') } %> <%- messages() %> <%# if (errors) { %>
+  <!-- <ul class="notice"> -->
+  <%# errors.array().forEach(error => { %>
+  <!-- IMPORTANT: replace # with equal for error.msg -->
+  <!-- <li><%# error.msg %></li> -->
+  <%# }) %>
+  <!-- </ul> -->
+  <%# } %>
+
+  <form id="addInventoryForm" method="post" action="/inventory/add-inventory">
+    <fieldset>
+      <legend>All fields are required</legend>
+      <label class="top" for="cars"
+        >Classification:
+        <select name="cars" id="cars">
+          <!-- TO DO: SHOULD BE DINAMIC -->
+          <option value="custom">Custom</option>
+          <option value="sport">Sport</option>
+          <option value="suv">SUV</option>
+          <option value="truck">Truck</option>
+          <option value="sedan">Sedan</option>
+        </select></label
+      >
+      <label class="top" for="make"
+        >Make:
+        <input
+          type="text"
+          id="invMake"
+          name="inv_make"
+          required
+          value="<%= locals.inv_make %>"
+      /></label>
+      <label class="top" for="invModel"
+        >Model:
+        <input
+          type="text"
+          id="invModel"
+          name="inv_model"
+          required
+          value="<%= locals.inv_model %>"
+      /></label>
+      <label for="invDescription"
+        >Description:
+        <textarea
+          class="top"
+          id="invDescription"
+          name="inv_description"
+          rows="4"
+          cols="50"
+        >
+        </textarea>
+      </label>
+
+      <input type="submit" value="Register" class="registerBtn" />
+    </fieldset>
+  </form>
+</div>
