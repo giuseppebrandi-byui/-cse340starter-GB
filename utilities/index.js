@@ -158,8 +158,7 @@ Util.buildClassificationForm = async function (locals) {
     method="post"
   >
     <fieldset>
-      <legend>Add New Classification</legend>
-      <p>Field is required.</p>
+      <legend>Field is required</legend>
       <label class="top" for="classification"
         >Classification Name:
         <p>Name must be alphabetic characters only, no spaces.</p>
