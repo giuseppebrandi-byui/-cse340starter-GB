@@ -26,4 +26,10 @@
   .grid--3-cols {
     grid-template-columns: 1fr 1fr 1fr;
   }
+
+  form input.submitBtn,
+  form input.registerBtn,
+  form input.submitClassificationBtn {
+    width: 30%;
+  }
 }
