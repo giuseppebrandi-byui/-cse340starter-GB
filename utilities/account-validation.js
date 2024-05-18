@@ -128,9 +128,9 @@ validate.checkLoginData = async (req, res, next) => {
 };
 
 /*  **********************************
- *  Classification validation rules
+ *  Classification rules
  * ********************************* */
-validate.classificationValidate = () => {
+validate.classificationRules = () => {
   return [
     // valid classification is required and cannot already exist in the DB
     body("classification_name")
@@ -141,7 +141,7 @@ validate.classificationValidate = () => {
       .withMessage("A valid classification name is required.")
       .custom(async (classification_name) => {
         // TO DO Create a new validation file
-        // Move function classificationValidate
+        // Move function classificationRules
         // Create a check function inside inventory model
         // Call the new check function here:
         const classificationName =
