@@ -1,5 +1,4 @@
 const utilities = require("../utilities/");
-
 const classificationCont = {};
 
 /* ***************************
