@@ -254,7 +254,8 @@ form label.top input {
 }
 
 form input.submitBtn,
-form input.registerBtn {
+form input.registerBtn,
+form input.submitClassificationBtn {
   display: block;
   border: none;
   background-color: #4c96d6;
@@ -265,6 +266,8 @@ form input.registerBtn {
   color: #ffffff;
   font-weight: 600;
   cursor: pointer;
+  text-align: center;
+  width: 100%;
 }
 
 input:required:invalid,
@@ -274,4 +277,9 @@ input:focus:invalid {
 
 input:required:valid {
   background-color: #4c96d664;
+}
+
+.instruction {
+  display: block;
+  margin: 1rem 0;
 }
