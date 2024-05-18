@@ -161,7 +161,7 @@ Util.buildClassificationForm = async function (locals) {
       <legend>Field is required</legend>
       <label class="top" for="classification"
         >Classification Name:
-        <p>Name must be alphabetic characters only, no spaces.</p>
+        <span class="instruction">Name must be alphabetic characters only, no spaces.</span>
         <input
           type="text"
           id="classification"
