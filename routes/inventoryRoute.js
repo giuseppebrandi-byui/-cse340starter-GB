@@ -4,8 +4,9 @@ const router = new express.Router();
 const invController = require("../controllers/invController");
 const invVehicle = require("../controllers/vehicleController");
 const utilities = require("../utilities");
-const regValidate = require("../utilities/account-validation");
+const validate = require("../utilities/classification-validation");
 const classificationController = require("../controllers/classificationController");
+const classificationControllerC = require("../controllers/classificationControllerC");
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
@@ -14,7 +15,12 @@ router.get("/detail/:carModelId", invVehicle.buildSingleVehicle);
 // Route to add classification
 router.get("/add-classification", classificationController.addClassification);
 // Route
-router.post("/add-classification", regValidate.classificationRules());
+router.post(
+  "/add-classification",
+  validate.classificationRules(),
+  validate.checkClassifData,
+  utilities.handleErrors(classificationControllerC.insertClassification)
+);
 // Route to vehicles management
 router.get("/", classificationController.displayVehicleManagement);
 module.exports = router;

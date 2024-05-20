@@ -1,4 +1,5 @@
 const utilities = require("../utilities/");
+const classificationModel = require("../models/classification-model");
 const classificationCont = {};
 
 /* ***************************
@@ -17,7 +18,7 @@ classificationCont.displayVehicleManagement = async function (req, res, next) {
     },
   ];
   const managmentLinks = await utilities.buildManagementLink(links);
-  res.render("./inventory/management", {
+  res.render("inventory/management", {
     title: "Vehicle Management",
     nav,
     managmentLinks,
@@ -25,12 +26,11 @@ classificationCont.displayVehicleManagement = async function (req, res, next) {
 };
 
 classificationCont.addClassification = async function (req, res, next) {
-  const newForm = await utilities.buildClassificationForm(res.locals);
   let nav = await utilities.getNav();
-  res.render("./inventory/add-classification", {
+  res.render("inventory/add-classification", {
     title: "Add New Classification",
     nav,
-    newForm,
+    errors: null,
   });
 };
 

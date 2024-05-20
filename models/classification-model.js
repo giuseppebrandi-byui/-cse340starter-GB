@@ -13,4 +13,17 @@ async function checkExistingClassification(classification_name) {
   }
 }
 
-module.exports = { checkExistingClassification };
+/* ****************************************
+ *   Insert new classification inside the database
+ * ************************************* */
+async function insertClassification(classification_name) {
+  try {
+    const sql =
+      "INSERT INTO classification (classification_name) VALUES ($1) RETURNING *";
+    return await pool.query(sql, [classification_name]);
+  } catch (error) {
+    return error.message;
+  }
+}
+
+module.exports = { checkExistingClassification, insertClassification };

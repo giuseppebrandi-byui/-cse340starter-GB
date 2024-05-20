@@ -150,37 +150,6 @@ Util.buildManagementLink = async function (links) {
   return linkMgt;
 };
 
-Util.buildClassificationForm = async function (locals) {
-  let form = "";
-  form += `<form
-    id="addClassificationForm"
-    action="/inventory/add-classification"
-    method="post"
-  >
-    <fieldset>
-      <legend>Field is required</legend>
-      <label class="top" for="classification"
-        >Classification Name:
-        <span class="instruction">Name must be alphabetic characters only, no spaces.</span>
-        <input
-          type="text"
-          id="classification"
-          name="classification_name"
-          required
-          pattern="^[A-Za-z][A-Za-z]*$"
-          value='${locals.classification_name ?? ""}'
-      /></label>
-
-      <input
-        type="submit"
-        value="Add Classification"
-        class="submitClassificationBtn"
-      />
-    </fieldset>
-  </form>`;
-  return form;
-};
-
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for
