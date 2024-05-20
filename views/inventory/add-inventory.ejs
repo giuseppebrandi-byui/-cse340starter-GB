@@ -1,16 +1,15 @@
 <div class="container">
   <% if (title) { %>
   <h1><%= title %></h1>
-  <% } else { res.redirect('/') } %> <%- messages() %> <%# if (errors) { %>
-  <!-- <ul class="notice"> -->
-  <%# errors.array().forEach(error => { %>
-  <!-- IMPORTANT: replace # with equal for error.msg -->
-  <!-- <li><%# error.msg %></li> -->
-  <%# }) %>
-  <!-- </ul> -->
-  <%# } %>
+  <% } else { res.redirect('/') } %> <%- messages() %> <% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+    <li><% error.msg %></li>
+    <% }) %>
+  </ul>
+  <% } %>
 
-  <form id="addInventoryForm" method="post" action="/inventory/add-inventory">
+  <form id="addInventoryForm" method="post" action="/inv/add-inventory">
     <fieldset>
       <legend>All fields are required</legend>
       <label class="top" for="cars"

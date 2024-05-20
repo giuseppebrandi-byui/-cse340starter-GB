@@ -11,7 +11,7 @@ vehicleCont.buildSingleVehicle = async function (req, res, next) {
   const data = await vehicleModel.getvehicleById(inv_id);
   const carDetailsGrid = await utilities.buildSingleVehiclePage(data);
   let nav = await utilities.getNav();
-  res.render("./inventory/vehicle", {
+  res.render("inventory/vehicle", {
     title: "Your Car",
     nav,
     carDetailsGrid,
