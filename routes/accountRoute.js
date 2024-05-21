@@ -40,9 +40,12 @@ router.post(
   "/login",
   regValidate.loginRules(),
   regValidate.checkLoginData,
-  (req, res) => {
-    res.status(200).send("login process");
-  }
+  utilities.handleErrors(accountController.accountLogin)
 );
+
+/* ***********************************
+ * Deliver Account Management View
+ * ******************************** */
+router.get("/account", utilities.handleErrors(accountController.accountLogin));
 
 module.exports = router;

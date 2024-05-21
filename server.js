@@ -17,6 +17,7 @@ const inventoryRoute = require("./routes/inventoryRoute");
 const utilities = require("./utilities");
 const accountRoute = require("./routes/accountRoute");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 /* ***********************
  * Middleware
@@ -44,6 +45,10 @@ app.use(function (req, res, next) {
 // Process Registration Activity
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+// Login activity
+app.use(cookieParser());
+// Login process activity
+app.use(utilities.checkJWTToken);
 
 /* *************************
  * View Engine and Templates
