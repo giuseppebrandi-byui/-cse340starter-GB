@@ -45,7 +45,12 @@ router.post(
 
 /* ***********************************
  * Deliver Account Management View
+ * TO DO: CHECK CODE WITH TEAM
  * ******************************** */
-router.get("/account", utilities.handleErrors(accountController.accountLogin));
+router.get(
+  "/",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildManagement)
+);
 
 module.exports = router;
