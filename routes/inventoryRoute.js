@@ -23,4 +23,11 @@ router.post(
 );
 // Route to vehicles management
 router.get("/", classificationController.displayVehicleManagement);
+
+// Route to inventory
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
+);
+
 module.exports = router;
