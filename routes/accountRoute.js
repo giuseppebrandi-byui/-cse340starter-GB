@@ -15,6 +15,14 @@ const regValidate = require("../utilities/account-validation");
  * ******************************** */
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 
+// Process the login request
+router.post(
+  "/login",
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+);
+
 /* ***********************************
  * Deliver Registration View
  * deliver registration view activity
@@ -35,17 +43,8 @@ router.post(
   utilities.handleErrors(accountController.registerAccount)
 );
 
-// Process Login
-router.post(
-  "/login",
-  regValidate.loginRules(),
-  regValidate.checkLoginData,
-  utilities.handleErrors(accountController.accountLogin)
-);
-
 /* ***********************************
  * Deliver Account Management View
- * TO DO: CHECK CODE WITH TEAM
  * ******************************** */
 router.get(
   "/",

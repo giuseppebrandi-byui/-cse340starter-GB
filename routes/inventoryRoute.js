@@ -19,11 +19,6 @@ router.get("/add-classification", classificationController.addClassification);
 // Route to add inventory
 router.get("/add-inventory", selectController.buildDropdown);
 
-// app.get(
-//   "/inv/add-inventory",
-//   utilities.handleErrors(selectController.buildDropdown)
-// );
-
 // Route to classification
 router.post(
   "/add-classification",
@@ -42,6 +37,9 @@ router.post(
 
 // Route to vehicles management
 router.get("/", classificationController.displayVehicleManagement);
+
+// Route to account management view
+router.get("/", utilities.handleErrors(invController.buildManagementView));
 
 // Route to inventory
 router.get(
