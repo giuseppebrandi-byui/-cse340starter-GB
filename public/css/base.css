@@ -255,7 +255,8 @@ form label.top input {
 
 form input.submitBtn,
 form input.registerBtn,
-form input.submitClassificationBtn {
+form input.submitClassificationBtn,
+form input.addVehicleBtn {
   display: block;
   border: none;
   background-color: #4c96d6;

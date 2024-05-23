@@ -64,7 +64,8 @@
 
   form input.submitBtn,
   form input.registerBtn,
-  form input.submitClassificationBtn {
+  form input.submitClassificationBtn,
+  form input.addVehicleBtn {
     width: 40%;
   }
 }
