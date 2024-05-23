@@ -13,7 +13,7 @@ require("dotenv").config();
  * deliver login view activity
  * ******************************** */
 async function buildLogin(req, res, next) {
-  let = await utilities.getNav();
+  let nav = await utilities.getNav();
   res.render("account/login", {
     title: "Login",
     nav,
