@@ -35,16 +35,12 @@ validate.addInventoryRules = () => {
       .trim()
       .notEmpty()
       .escape()
-      .isLength({ min: 2 })
       .withMessage("Please provide a link to the vehicle image")
-      .custom(async (inv_image) => {
-        console.log("Printing", inv_image);
-      }),
+      .custom(async (inv_image) => {}),
     body("inv_thumbnail")
       .trim()
       .notEmpty()
       .escape()
-      .isLength({ min: 2 })
       .withMessage("Please provide a link to the vehicle image thumbnail"),
     body("inv_price")
       .trim()

@@ -12,42 +12,40 @@
   <form id="addInventoryForm" method="post" action="/inv/add-inventory">
     <fieldset>
       <legend>All fields are required</legend>
-      <label class="top" for="cars"
-        >Classification:
-        <%- selectMenu %>
-      
-        <label class="top" for="make"
+      <label class="top" for="classificationList"
+        >Classification: <%- selectMenu %>
+      </label>
+
+      <label class="top" for="invMake"
         >Make:
         <input
           type="text"
           id="invMake"
           name="inv_make"
-          min="2"
           required
           placeholder="Min of 2 characters"
           value="<%= locals.inv_make %>"
       /></label>
-      
+
       <label class="top" for="invModel"
         >Model:
         <input
           type="text"
           id="invModel"
           name="inv_model"
-          min="2"
           required
           placeholder="Min of 2 characters"
           value="<%= locals.inv_model %>"
       /></label>
-      
+
       <label class="top" for="invDescription">Description:</label>
-        <textarea
-          id="invDescription"
-          name="inv_description"
-          rows="4"
-          cols="50"
-          required
-          ></textarea>
+      <textarea
+        id="invDescription"
+        name="inv_description"
+        rows="4"
+        cols="50"
+        required
+      ></textarea>
 
       <label class="top" for="invImage"
         >Image Path:
@@ -76,18 +74,16 @@
           required
           placeholder="Decimal or Integer"
           value="<%= locals.inv_price %>"
-          pattern="/^\d+$/"
       /></label>
       <label class="top" for="invYear"
         >Date:
         <input
-          type="text"
+          type="number"
           id="invYear"
           name="inv_year"
           required
           placeholder="4-digit year"
           max="9999"
-          pattern="[0-9]{4}"
           value="<%= locals.inv_year %>"
       /></label>
       <label class="top" for="invMiles"
