@@ -5,8 +5,10 @@ const invController = require("../controllers/invController");
 const invVehicle = require("../controllers/vehicleController");
 const utilities = require("../utilities");
 const validate = require("../utilities/classification-validation");
+const inventoryValidate = require("../utilities/addinventory-validation");
 const classificationController = require("../controllers/classificationController");
 const classificationControllerC = require("../controllers/classificationControllerC");
+const selectController = require("../controllers/selectController");
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
@@ -14,13 +16,30 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 router.get("/detail/:carModelId", invVehicle.buildSingleVehicle);
 // Route to add classification
 router.get("/add-classification", classificationController.addClassification);
-// Route
+// Route to add inventory
+router.get("/add-inventory", selectController.buildDropdown);
+
+// app.get(
+//   "/inv/add-inventory",
+//   utilities.handleErrors(selectController.buildDropdown)
+// );
+
+// Route to classification
 router.post(
   "/add-classification",
   validate.classificationRules(),
   validate.checkClassifData,
   utilities.handleErrors(classificationControllerC.insertClassification)
 );
+
+// Route to add inventory
+router.post(
+  "/add-inventory",
+  inventoryValidate.addInventoryRules(),
+  inventoryValidate.checkInventoryData,
+  utilities.handleErrors(selectController.insertInventory)
+);
+
 // Route to vehicles management
 router.get("/", classificationController.displayVehicleManagement);
 
@@ -28,6 +47,12 @@ router.get("/", classificationController.displayVehicleManagement);
 router.get(
   "/getInventory/:classification_id",
   utilities.handleErrors(invController.getInventoryJSON)
+);
+
+// Route to inventory management
+router.get(
+  "inv/edit/:inventory_id",
+  utilities.handleErrors(invController.editItemsInfo)
 );
 
 module.exports = router;

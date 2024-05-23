@@ -14,46 +14,103 @@
       <legend>All fields are required</legend>
       <label class="top" for="cars"
         >Classification:
-        <select name="cars" id="cars">
-          <!-- TO DO: SHOULD BE DINAMIC -->
-          <option value="1">Custom</option>
-          <option value="2">Sport</option>
-          <option value="3">SUV</option>
-          <option value="4">Truck</option>
-          <option value="5">Sedan</option>
-        </select></label
-      >
-      <label class="top" for="make"
+        <%- selectMenu %>
+      
+        <label class="top" for="make"
         >Make:
         <input
           type="text"
           id="invMake"
           name="inv_make"
+          min="2"
           required
+          placeholder="Min of 2 characters"
           value="<%= locals.inv_make %>"
       /></label>
+      
       <label class="top" for="invModel"
         >Model:
         <input
           type="text"
           id="invModel"
           name="inv_model"
+          min="2"
           required
+          placeholder="Min of 2 characters"
           value="<%= locals.inv_model %>"
       /></label>
-      <label for="invDescription"
-        >Description:
+      
+      <label class="top" for="invDescription">Description:</label>
         <textarea
-          class="top"
           id="invDescription"
           name="inv_description"
           rows="4"
           cols="50"
-        >
-        </textarea>
-      </label>
+          required
+          ></textarea>
 
-      <input type="submit" value="Register" class="registerBtn" />
+      <label class="top" for="invImage"
+        >Image Path:
+        <input
+          type="text"
+          id="invImage"
+          name="inv_image"
+          value="<%= locals.inv_image?? `/images/vehicles/no-image.png` %>"
+      /></label>
+
+      <label class="top" for="invThumbnail"
+        >Thumbnail Path:
+        <input
+          type="text"
+          id="invThumbnail"
+          name="inv_thumbnail"
+          value="<%= locals.inv_thumbnail?? `/images/vehicles/no-image.png` %>"
+      /></label>
+
+      <label class="top" for="invPrice"
+        >Price:
+        <input
+          type="number"
+          id="invPrice"
+          name="inv_price"
+          required
+          placeholder="Decimal or Integer"
+          value="<%= locals.inv_price %>"
+          pattern="/^\d+$/"
+      /></label>
+      <label class="top" for="invYear"
+        >Date:
+        <input
+          type="text"
+          id="invYear"
+          name="inv_year"
+          required
+          placeholder="4-digit year"
+          max="9999"
+          pattern="[0-9]{4}"
+          value="<%= locals.inv_year %>"
+      /></label>
+      <label class="top" for="invMiles"
+        >Miles:
+        <input
+          type="number"
+          id="invMiles"
+          name="inv_miles"
+          required
+          placeholder="digits only"
+          value="<%= locals.inv_miles %>"
+      /></label>
+      <label class="top" for="invColor"
+        >Color:
+        <input
+          type="text"
+          id="invColor"
+          name="inv_color"
+          required
+          value="<%= locals.inv_color %>"
+      /></label>
+
+      <input type="submit" value="Add Vehicle" class="addVehicleBtn" />
     </fieldset>
   </form>
 </div>
