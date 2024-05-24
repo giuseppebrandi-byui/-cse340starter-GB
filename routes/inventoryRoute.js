@@ -50,7 +50,7 @@ router.get(
 // Route to inventory management
 router.get(
   "inv/edit/:inventory_id",
-  utilities.handleErrors(invController.editItemsInfo)
+  utilities.handleErrors(invController.editInventoryView)
 );
 
 module.exports = router;
