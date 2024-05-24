@@ -54,6 +54,10 @@ router.get(
 );
 
 // Route to update vehicle
-router.post("/update/", utilities.handleErrors(invController.updateInventory));
+router.post(
+  "/update/",
+  inventoryValidate.checkUpdateData,
+  inventoryValidate.addNewInventoryRules,
+  utilities.handleErrors(invController.updateInventory));
 
 module.exports = router;
