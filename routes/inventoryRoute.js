@@ -36,7 +36,7 @@ router.post(
 );
 
 // Route to vehicles management
-router.get("/", classificationController.displayVehicleManagement);
+// router.get("/", classificationController.displayVehicleManagement);
 
 // Route to account management view
 router.get("/", utilities.handleErrors(invController.buildManagementView));
