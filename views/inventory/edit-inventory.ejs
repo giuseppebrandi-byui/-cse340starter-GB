@@ -128,11 +128,14 @@
       </label>
 
       <input
-        type="submit"
-        name="submit"
-        value="Update Vehicle"
+        type="hidden"
+        name="inv_id"
         class="updateVehicleBtn"
-      />
+        <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"<% } %>        
+      >
+      <button disabled type="submit">Update Vehicle</button>
     </fieldset>
   </form>
 </div>
+
+<script src="../../js/inv-update.js"></script>
