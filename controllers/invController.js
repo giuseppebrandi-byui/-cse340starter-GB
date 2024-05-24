@@ -26,12 +26,12 @@ invCont.buildByClassificationId = async function (req, res, next) {
  * ************************** */
 invCont.buildManagementView = async function (req, res, next) {
   let nav = await utilities.getNav();
-  const classificationSelect = await utilities.buildClassificationList();
+  const selectMenu = await utilities.buildClassificationList();
   res.render("./inventory/management", {
     title: "Vehicle Management",
     nav,
     errors: null,
-    classificationSelect,
+    selectMenu,
   });
 };
 
@@ -57,14 +57,14 @@ invCont.editInventoryView = async function (req, res, next) {
   const inv_id = parseInt(req.params.inv_id);
   let nav = await utilities.getNav();
   const itemData = await invModel.getInventoryById(inv_id);
-  const classificationSelect = await utilities.buildClassificationList(
+  const selectMenu = await utilities.buildClassificationList(
     itemData.classification_id
   );
   const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
   res.render("./inventory/edit-inventory", {
     title: "Edit " + itemName,
     nav,
-    classificationSelect: classificationSelect,
+    selectMenu: selectMenu,
     errors: null,
     inv_id: itemData.inv_id,
     inv_make: itemData.inv_make,
