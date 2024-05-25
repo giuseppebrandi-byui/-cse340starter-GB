@@ -34,8 +34,7 @@ validate.addInventoryRules = () => {
       .trim()
       .notEmpty()
       .escape()
-      .withMessage("Please provide a link to the vehicle image")
-      .custom(async (inv_image) => {}),
+      .withMessage("Please provide a link to the vehicle image"),
     body("inv_thumbnail")
       .trim()
       .notEmpty()
@@ -119,8 +118,7 @@ validate.addNewInventoryRules = () => {
       .trim()
       .notEmpty()
       .escape()
-      .withMessage("Please provide a link to the vehicle image")
-      .custom(async (inv_image) => {}),
+      .withMessage("Please provide a link to the vehicle image"),
     body("inv_thumbnail")
       .trim()
       .notEmpty()

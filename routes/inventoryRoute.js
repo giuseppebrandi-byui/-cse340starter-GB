@@ -35,9 +35,6 @@ router.post(
   utilities.handleErrors(selectController.insertInventory)
 );
 
-// Route to vehicles management
-// router.get("/", classificationController.displayVehicleManagement);
-
 // Route to account management view
 router.get("/", utilities.handleErrors(invController.buildManagementView));
 
@@ -49,7 +46,7 @@ router.get(
 
 // Route to inventory management
 router.get(
-  "inv/edit/:inventory_id",
+  "/edit/:inv_id",
   utilities.handleErrors(invController.editInventoryView)
 );
 

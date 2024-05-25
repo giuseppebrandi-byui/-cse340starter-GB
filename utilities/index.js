@@ -163,16 +163,6 @@ Util.buildSingleVehiclePage = async function (vehicle) {
   return carDetailsGrid;
 };
 
-/* ************************
- * Constructs the management links
- ************************** */
-Util.buildManagementLink = async function (links) {
-  let linkMgt = "";
-  links.forEach((link) => {
-    linkMgt += `<a href="${link.url}">${link.name}</a><br/>`;
-  });
-  return linkMgt;
-};
 
 /* ****************************************
  * Middleware For Handling Errors
