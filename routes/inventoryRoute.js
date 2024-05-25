@@ -19,11 +19,6 @@ router.get("/add-classification", classificationController.addClassification);
 // Route to add inventory
 router.get("/add-inventory", selectController.buildDropdown);
 
-// app.get(
-//   "/inv/add-inventory",
-//   utilities.handleErrors(selectController.buildDropdown)
-// );
-
 // Route to classification
 router.post(
   "/add-classification",
@@ -40,8 +35,8 @@ router.post(
   utilities.handleErrors(selectController.insertInventory)
 );
 
-// Route to vehicles management
-router.get("/", classificationController.displayVehicleManagement);
+// Route to account management view
+router.get("/", utilities.handleErrors(invController.buildManagementView));
 
 // Route to inventory
 router.get(
@@ -51,8 +46,15 @@ router.get(
 
 // Route to inventory management
 router.get(
-  "inv/edit/:inventory_id",
-  utilities.handleErrors(invController.editItemsInfo)
+  "/edit/:inv_id",
+  utilities.handleErrors(invController.editInventoryView)
 );
+
+// Route to update vehicle
+router.post(
+  "/update/",
+  inventoryValidate.checkUpdateData,
+  inventoryValidate.addNewInventoryRules,
+  utilities.handleErrors(invController.updateInventory));
 
 module.exports = router;
