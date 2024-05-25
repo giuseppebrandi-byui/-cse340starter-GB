@@ -68,7 +68,7 @@ validate.loginRules = () => {
         const emailExists = await accountModel.checkExistingEmail(
           account_email
         );
-        if (!emailExists) {
+        if (!emailExists && account_email == " ") {
           throw new Error(
             "This email account does not exist. Please use valid email."
           );
