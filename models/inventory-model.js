@@ -27,6 +27,9 @@ async function getInventoryByClassificationId(classification_id) {
   }
 }
 
+/* ***************************
+ *  Insert inventory items
+ * ************************** */
 async function insertInventory(
   inv_make,
   inv_model,
@@ -40,7 +43,6 @@ async function insertInventory(
   classification_id
 ) {
   try {
-    console.log("Three", inv_image);
     const data = await pool.query(
       `INSERT INTO public.inventory(
       inv_make,
