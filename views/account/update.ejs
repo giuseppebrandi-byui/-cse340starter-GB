@@ -45,11 +45,18 @@
     </fieldset>
   </form>
 
-  <form id="updateForm" method="post" action="/account/update">
+  <form class="updateForm" method="post" action="/account/update">
     <fieldset>
       <legend>Update Password</legend>
+      <div>
+        <p>
+          Passwords must be minimum of 12 characters and contain at least 1 capital
+          letter, 1 number and 1 special character.
+        </p>
+        <p>*note your original password will be changed</p>
+      </div>
       <label class="top" for="pwd"
-        >Password:
+        >Update Password:
         <input
           type="password"
           id="pwd"
@@ -63,7 +70,7 @@
           letter, 1 number and 1 special character.
         </p>
       </div>
-      <input type="submit" value="Update Password" class="updatePassBtn" />
+      <input type="submit" value="Change Password" class="updatePassBtn" />
     </fieldset>
   </form>
 </div>
