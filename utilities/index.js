@@ -187,12 +187,35 @@ Util.checkJWTToken = (req, res, next) => {
           return res.redirect("/account/login");
         }
         res.locals.accountData = accountData;
+        // console.log(accountData);
         res.locals.loggedin = 1;
         next();
       }
     );
   } else {
     next();
+  }
+};
+
+/* ****************************************
+ * Middleware to check account type
+ **************************************** */
+Util.checkAccountType = (req, res, next) => {
+  if (req.cookies.jwt) {
+    jwt.verify(
+      req.cookies.jwt,
+      process.env.ACCESS_TOKEN_SECRET,
+      function (err, accountData) {
+        if (err || (accountData.account_type != "Employee" && accountData.account_type != "Admin")) {
+          req.flash("Please log in");
+          res.clearCookie("jwt");
+          return res.redirect("/account/login");
+        }
+        next();
+      }
+    );
+  } else {
+     return res.redirect("/account/login");
   }
 };
 

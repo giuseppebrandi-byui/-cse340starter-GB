@@ -103,6 +103,43 @@ async function registerAccount(req, res) {
 }
 
 /* ****************************************
+ *  Process Update  
+ * *************************************** */
+async function updateAccount(req, res) {
+  let nav = await utilities.getNav();
+  const {
+    account_firstname,
+    account_lastname,
+    account_email,
+  } = req.body;
+
+  const regResult = await accountModel.updateAccount(
+    account_firstname,
+    account_lastname,
+    account_email,
+  );
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, you\'ve updated ${account_firstname}.`
+    );
+    res.status(201).render("account/update", {
+      title: "Login",
+      nav,
+      errors: null,
+    });
+  } else {
+    req.flash("notice", "Sorry, the update failed.");
+    res.status(501).render("account/update", {
+      title: "Update Account",
+      nav,
+      errors: null,
+    });
+  }
+}
+
+/* ****************************************
  *  Process login request
  * ************************************ */
 async function accountLogin(req, res) {
@@ -143,10 +180,24 @@ async function accountLogin(req, res) {
   }
 }
 
+/* ***********************************
+ * Deliver Update Account view
+ * ******************************** */
+async function buildUpdate(req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("account/update", {
+    title: "Update",
+    nav,
+    errors: null,
+  });
+}
+
 module.exports = {
   buildLogin,
   buildRegister,
   registerAccount,
   buildManagement,
   accountLogin,
+  buildUpdate,
+  updateAccount,
 };

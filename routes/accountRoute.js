@@ -52,4 +52,19 @@ router.get(
   utilities.handleErrors(accountController.buildManagement)
 );
 
+/* ***********************************
+ * Deliver Update Account View
+ * ******************************** */
+router.get(
+  "/update",
+  utilities.handleErrors(accountController.buildUpdate)
+);
+
+router.post(
+  "/update",
+  regValidate.updateRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accountController.updateAccount)
+);
+
 module.exports = router;
