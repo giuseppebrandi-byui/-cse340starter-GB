@@ -104,7 +104,7 @@ Util.buildClassificationGrid = async function (data) {
 /* **************************************
  * Build the chosen vehicle view HTML
  * ************************************ */
-Util.buildSingleVehiclePage = async function (vehicle) {
+Util.buildSingleVehiclePage = async function (vehicle, locals = null) {
   let carDetailsGrid;
   carDetailsGrid = "<h2>";
   carDetailsGrid += vehicle.inv_make + " " + vehicle.inv_model;
@@ -160,6 +160,8 @@ Util.buildSingleVehiclePage = async function (vehicle) {
   carDetailsGrid += "</div>"; // Close div more details section
 
   carDetailsGrid += "</div>"; // Close grid
+
+  carDetailsGrid += "</div>"; // Close div
   return carDetailsGrid;
 };
 
