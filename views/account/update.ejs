@@ -10,7 +10,7 @@
   <% } %>
   <%# locals.accountData.account_id %>
 
-  <form id="updateForm" method="post" action="/account/update">
+  <form id="updateForm" method="post" action="/account/updateAccount">
     <fieldset>
       <legend>Edit Account</legend>
       <label class="top" for="fName"
@@ -46,14 +46,14 @@
         type="hidden"
         name="account_id"
         class="accountID"
-        <% if(locals.account_id) { %> value="<%= locals.account_id %>"<% } %>        
+        <% if(locals.accountData.account_id) { %> value="<%= locals.accountData.account_id %>"<% } %>        
       >
 
       <input type="submit" value="Update" class="updateBtn" />
     </fieldset>
   </form>
 
-  <form class="updateForm" method="post" action="/account/update">
+  <form class="updateForm" method="post" action="/account/updatePassword">
     <fieldset>
       <legend>Update Password</legend>
       <div>
@@ -80,10 +80,10 @@
       </div>
 
       <input
-        type="hidden"
+        type= "hidden"
         name="account_id"
         class="accountID"
-        <% if(locals.account_id) { %> value="<%= locals.account_id %>"<% } %>        
+        <% if(locals.accountData.account_id) { %> value="<%= locals.accountData.account_id %>"<% } %>        
       >
       
       <input type="submit" value="Change Password" class="updatePassBtn" />

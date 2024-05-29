@@ -61,10 +61,17 @@ router.get(
 );
 
 router.post(
-  "/update",
+  "/updateAccount",
   regValidate.updateRules(),
   regValidate.checkUpdateData,
   utilities.handleErrors(accountController.updateAccount)
+);
+
+router.post(
+  "/updatePassword",
+  regValidate.updatePasswordRules(),
+  regValidate.checkUpdatePassword,
+  utilities.handleErrors(accountController.updatePassword)
 );
 
 module.exports = router;

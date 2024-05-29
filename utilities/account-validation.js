@@ -128,30 +128,8 @@ validate.checkLoginData = async (req, res, next) => {
   next();
 };
 
-/* ******************************
- * Check update data and return errors or continue to update the account
- * ***************************** */
-validate.checkUpdateData = async (req, res, next) => {
-  const { account_firstname, account_lastname, account_email } = req.body;
-  let errors = [];
-  errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    let nav = await utilities.getNav();
-    res.render("account/update", {
-      errors,
-      title: "Update Account",
-      nav,
-      account_firstname,
-      account_lastname,
-      account_email,
-    });
-    return;
-  }
-  next();
-};
-
 /*  **********************************
- *  Registration Data Validation Rules
+ *  Update Data Validation Rules
  * ********************************* */
 validate.updateRules = () => {
   return [
@@ -178,6 +156,67 @@ validate.updateRules = () => {
       .normalizeEmail() // refer to validator.js docs
       .withMessage("A valid email is required."),
   ];
+};
+
+/* ************************************************************
+ * Check update data and return errors or continue to update the account
+ * ***********************************************************/
+validate.checkUpdateData = async (req, res, next) => {
+  const { account_firstname, account_lastname, account_email } = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    res.render("account/update", {
+      errors,
+      title: "Update Account",
+      nav,
+      account_firstname,
+      account_lastname,
+      account_email,
+    });
+    return;
+  }
+  next();
+};
+
+/*  **********************************
+ *  Update Password Validation Rules
+ * ********************************* */
+validate.updatePasswordRules = () => {
+  return [
+    // password is required and must be strong password
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("Password does not meet requirements."),
+  ];
+};
+
+/* ************************************************************
+ * Check update password and return errors or continue to update the account
+ * ***********************************************************/
+validate.checkUpdatePassword = async (req, res, next) => {
+  const { account_password } = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    res.render("account/update", {
+      errors,
+      title: "Update Account",
+      nav,
+    });
+    return;
+  }
+  next();
 };
 
 module.exports = validate;
