@@ -161,6 +161,54 @@ Util.buildSingleVehiclePage = async function (vehicle, locals = null) {
 
   carDetailsGrid += "</div>"; // Close grid
 
+  /* **************************************
+ * Build the inquiry form
+
+ * ************************************ */
+  carDetailsGrid += '<div class="grid grid-1-cols">';
+  carDetailsGrid += `<form id="inquiryForm" method="post" action="/inv/inquiry">
+    <fieldset>
+      <legend>Your inquiry</legend>
+      <label class="top" for="fName"
+        >First Name:
+        <input
+          type="text"
+          id="fName"
+          name="account_firstname"
+          required
+          value="Giuseppe Elia"
+      /></label>
+      <br />
+      <label class="top" for="lName"
+        >Last Name:
+        <input
+          type="text"
+          id="lName"
+          name="account_lastname"
+          required
+          value="Brandi"
+      /></label>
+      <br />
+      <label class="top" for="email"
+        >Email:
+        <input
+          type="email"
+          id="email"
+          name="account_email"
+          required
+          placeholder="Enter a valid email address"
+          value="info@thesuccesscreed.co.uk"
+      /></label>
+        <br />
+      <label class="top" for="inquiry">Your Message 
+      <textarea id="inquiry" name="inquiry" rows="4" cols="50">You must be logged in to send a message></textarea></label>
+
+      <br />
+      <input type="submit" value="Send Inquiry" class="submitBtn" />
+    </fieldset>
+  </form>`
+  carDetailsGrid += "</div>"; // Close grid
+
   carDetailsGrid += "</div>"; // Close div
   return carDetailsGrid;
 };
