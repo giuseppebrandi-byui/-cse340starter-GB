@@ -263,6 +263,15 @@ async function buildUpdate(req, res, next) {
   });
 }
 
+/* ***********************************
+ * Deliver account logout
+ * ******************************** */
+async function accountLogout(req, res) {
+  let nav = await utilities.getNav();
+  res.cookie('jwt', '', { maxAge: 1 });
+  res.redirect('/');
+}
+
 module.exports = {
   buildLogin,
   buildRegister,
@@ -272,4 +281,5 @@ module.exports = {
   buildUpdate,
   updateAccount,
   updatePassword,
+  accountLogout,
 };
