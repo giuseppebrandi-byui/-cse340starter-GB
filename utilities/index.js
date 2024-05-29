@@ -104,7 +104,7 @@ Util.buildClassificationGrid = async function (data) {
 /* **************************************
  * Build the chosen vehicle view HTML
  * ************************************ */
-Util.buildSingleVehiclePage = async function (vehicle) {
+Util.buildSingleVehiclePage = async function (vehicle, locals = null) {
   let carDetailsGrid;
   carDetailsGrid = "<h2>";
   carDetailsGrid += vehicle.inv_make + " " + vehicle.inv_model;
@@ -160,6 +160,8 @@ Util.buildSingleVehiclePage = async function (vehicle) {
   carDetailsGrid += "</div>"; // Close div more details section
 
   carDetailsGrid += "</div>"; // Close grid
+
+  carDetailsGrid += "</div>"; // Close div
   return carDetailsGrid;
 };
 
@@ -181,6 +183,7 @@ Util.checkJWTToken = (req, res, next) => {
       req.cookies.jwt,
       process.env.ACCESS_TOKEN_SECRET,
       function (err, accountData) {
+        console.log(accountData);
         if (err) {
           req.flash("Please log in");
           res.clearCookie("jwt");
@@ -193,6 +196,28 @@ Util.checkJWTToken = (req, res, next) => {
     );
   } else {
     next();
+  }
+};
+
+/* ****************************************
+ * Middleware to check account type
+ **************************************** */
+Util.checkAccountType = (req, res, next) => {
+  if (req.cookies.jwt) {
+    jwt.verify(
+      req.cookies.jwt,
+      process.env.ACCESS_TOKEN_SECRET,
+      function (err, accountData) {
+        if (err || (accountData.account_type != "Employee" && accountData.account_type != "Admin")) {
+          req.flash("Please log in");
+          res.clearCookie("jwt");
+          return res.redirect("/account/login");
+        }
+        next();
+      }
+    );
+  } else {
+     return res.redirect("/account/login");
   }
 };
 

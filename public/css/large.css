@@ -31,7 +31,9 @@
   form input.registerBtn,
   form input.submitClassificationBtn,
   form input.addVehicleBtn,
-  form input.updateVehicleBtn {
+  form input.updateVehicleBtn,
+  form input.updateBtn,
+  form input.updatePassBtn {
     width: 30%;
   }
 }
