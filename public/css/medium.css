@@ -71,4 +71,12 @@
   form input.updatePassBtn {
     width: 40%;
   }
+
+  .inquiry-form {
+    order: 1;
+  }
+
+.inquiry-info {
+    order: 2;
+  }
 }
