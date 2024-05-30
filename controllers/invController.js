@@ -30,8 +30,8 @@ invCont.buildManagementView = async function (req, res, next) {
   res.render("./inventory/management", {
     title: "Vehicle Management",
     nav,
-    errors: null,
     selectMenu,
+    errors: null,
   });
 };
 
@@ -55,10 +55,8 @@ invCont.getInventoryJSON = async (req, res, next) => {
  * ************************** */
 invCont.editInventoryView = async function (req, res, next) {
   const inv_id = parseInt(req.params.inv_id);
-  // console.log(inv_id);
   let nav = await utilities.getNav();
   const itemData = (await invModel.getInventoryById(inv_id))[0];
-  // console.log(itemData);
   const selectMenu = await utilities.buildClassificationList(
     itemData.classification_id
   );

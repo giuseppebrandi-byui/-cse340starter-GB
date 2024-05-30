@@ -253,6 +253,7 @@ CREATE TABLE IF NOT EXISTS public.inquiry
     inquiry_firstname character varying NOT NULL,
     inquiry_lastname character varying NOT NULL,
     inquiry_email character varying NOT NULL,
-    inquiry_message character varying NOT NULL
+    inquiry_message character varying NOT NULL,
+    vehicle_id integer NOT NULL
     -- CONSTRAINT inquiry_pkey PRIMARY KEY (inquiry_id)
 );

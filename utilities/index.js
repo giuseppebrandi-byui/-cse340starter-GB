@@ -106,9 +106,9 @@ Util.buildClassificationGrid = async function (data) {
  * ************************************ */
 Util.buildSingleVehiclePage = async function (vehicle, locals = null) {
   let carDetailsGrid;
-  carDetailsGrid = "<h2>";
+  carDetailsGrid = "<h1>";
   carDetailsGrid += vehicle.inv_make + " " + vehicle.inv_model;
-  carDetailsGrid += "</h2>";
+  carDetailsGrid += "</h1>";
 
   carDetailsGrid += '<div id="inv-display" class="grid grid--2-cols">';
 
@@ -131,15 +131,15 @@ Util.buildSingleVehiclePage = async function (vehicle, locals = null) {
 
   carDetailsGrid += "<div>"; // Open div details section
   carDetailsGrid += "<div class='prominent'>"; // Open div prominent section
-  carDetailsGrid += "<h3>";
+  carDetailsGrid += "<h2>";
   carDetailsGrid +=
     " " + vehicle.inv_year + "  " + vehicle.inv_make + " " + vehicle.inv_model;
-  carDetailsGrid += "</h3>";
+  carDetailsGrid += "</h2>";
 
-  carDetailsGrid += "<h3>";
+  carDetailsGrid += "<h2>";
   carDetailsGrid +=
     "$" + new Intl.NumberFormat("en-US").format(vehicle.inv_price);
-  carDetailsGrid += "</h3>";
+  carDetailsGrid += "</h2>";
   carDetailsGrid += "</div>"; // Close div prominent section
 
   carDetailsGrid += "<div>"; // Open div more details section
@@ -160,8 +160,81 @@ Util.buildSingleVehiclePage = async function (vehicle, locals = null) {
   carDetailsGrid += "</div>"; // Close div more details section
 
   carDetailsGrid += "</div>"; // Close grid
+  carDetailsGrid += "</div>"; // Close
 
-  carDetailsGrid += "</div>"; // Close div
+/***************************************
+ * Build the inquiry form
+************************************* */
+    carDetailsGrid += "<hr>"; // Close
+    carDetailsGrid += '<div class="grid grid--2-cols">';
+    carDetailsGrid += '<div class="inquiry-form">';
+  if (locals) {
+    carDetailsGrid += `<form id="inquiryForm" method="post" action="/inv/inquiry">
+    <fieldset>
+      <legend>Your inquiry</legend>
+      <label class="top" for="fName"
+        >First Name:
+        <input
+          type="text"
+          id="fName"
+          name="inquiry_firstname"
+          required
+          value="${locals.account_firstname}"
+      /></label>
+      <br />
+      <label class="top" for="lName"
+        >Last Name:
+        <input
+          type="text"
+          id="lName"
+          name="inquiry_lastname"
+          required
+          value="${locals.account_lastname}"
+      /></label>
+      <br />
+      <label class="top" for="email"
+        >Email:
+        <input
+          type="email"
+          id="email"
+          name="inquiry_email"
+          required
+          placeholder="Enter a valid email address"
+          value="${locals.account_email}"
+      /></label>
+        <br />
+      <label class="top" for="inquiry">Your Message 
+      <textarea id="inquiry" name="inquiry_message" rows="4" placeholder="Type here your inquiry!">${ locals.inquiry_message ?? ''}</textarea></label>
+
+      <br />
+      <input
+        type="hidden"
+        name="inv_id"
+        value="${vehicle.inv_id}"        
+      >
+      <input type="submit" value="Submit" class="submitBtn" />
+    </fieldset>
+  </form>`
+  } else { 
+      carDetailsGrid += '<div class="inquiry-info">';
+      carDetailsGrid += '<h3>Do you want to make an inquiry?</h3>';
+      carDetailsGrid += '<a href="/account/login">You must be logged in to send a message</a>';
+      carDetailsGrid += '</div>';
+  }
+  carDetailsGrid += '</div>';
+
+  carDetailsGrid += '<div class="inquiry-info">';
+  carDetailsGrid += '<h3>Are you interested?</h3>';
+  carDetailsGrid += '<p>Should you need more information about this particular car, please complete the inquiry form and our team will contact you withing the next 24 hours.</p>';
+  carDetailsGrid += '<h3>How to find us</h3>';
+  carDetailsGrid += '<p class="info-text">CSE Motors</p>';
+  carDetailsGrid += '<p class="info-text">4011 W Sunset Blvd, Los Angeles, 90029</p>';
+  carDetailsGrid += '<p class="info-text">323-669-1601</p>';
+  carDetailsGrid += '<p class="info-text">Monday – Saturday: 8:00 AM to 6:00 PM</p>';
+  carDetailsGrid += '</div>';
+  
+  carDetailsGrid += "</div>"; // Close grid
+
   return carDetailsGrid;
 };
 
@@ -183,7 +256,6 @@ Util.checkJWTToken = (req, res, next) => {
       req.cookies.jwt,
       process.env.ACCESS_TOKEN_SECRET,
       function (err, accountData) {
-        console.log(accountData);
         if (err) {
           req.flash("Please log in");
           res.clearCookie("jwt");
@@ -220,6 +292,7 @@ Util.checkAccountType = (req, res, next) => {
      return res.redirect("/account/login");
   }
 };
+
 
 /* ****************************************
  *  Check Login

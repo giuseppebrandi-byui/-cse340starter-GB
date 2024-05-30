@@ -27,7 +27,6 @@ const insertInventory = async (req, res) => {
     inv_color,
     classification_id,
   } = req.body;
-  // console.log("Two", inv_image);
   const result = await inventoryModel.insertInventory(
     inv_make,
     inv_model,
