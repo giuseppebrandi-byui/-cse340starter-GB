@@ -2,9 +2,8 @@
  * Inquiry controller
  * ******************************** */
 const utilities = require("../utilities");
-const accountModel = require("../models/account-model");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const inquiryModel = require("../models/inquiry-model");
+const vehicleModel = require("../models/vehicle-model");
 require("dotenv").config();
 
 
@@ -18,30 +17,50 @@ async function registerInquiry(req, res) {
     inquiry_lastname,
     inquiry_email,
     inquiry_message,
+    inv_id,
   } = req.body;
-
-  const regInquiry = await accountModel.registerInquiry(
+  console.log("10", inquiry_firstname, inquiry_lastname, inquiry_email, inquiry_message);
+  const regInquiry = await inquiryModel.registerInquiry(
     inquiry_firstname,
     inquiry_lastname,
     inquiry_email,
     inquiry_message,
+    inv_id,
   );
-
+  console.log("100", regInquiry);
   if (regInquiry) {
     req.flash(
       "notice",
       `Great, ${inquiry_firstname}, Your inquiry has been sent. A member of the team will contact you in the next 24 hours.`
     );
-    res.status(201).render("inv/detail", {
-      title: "Inquiry",
+    let nav = await utilities.getNav();
+    const data = await vehicleModel.getvehicleById(inv_id);
+    const carDetailsGrid = await utilities.buildSingleVehiclePage(data, res.locals.accountData);
+    res.status(201).render("inventory/vehicle", {
+      title: "Your Car",
       nav,
+      inquiry_firstname,
+      inquiry_lastname,
+      inquiry_email,
+      inquiry_message,
+      inv_id,
+      carDetailsGrid,
       errors: null,
     });
   } else {
     req.flash("notice", "Sorry, your inquiry submission failed.");
-    res.status(501).render("inv/detail", {
-      title: "Inquiry",
+    let nav = await utilities.getNav();
+    const data = await vehicleModel.getvehicleById(inv_id);
+    const carDetailsGrid = await utilities.buildSingleVehiclePage(data, res.locals.accountData);
+    res.status(501).render("inventory/vehicle", {
+      title: "Your Car",
       nav,
+      inquiry_firstname,
+      inquiry_lastname,
+      inquiry_email,
+      inquiry_message,
+      inv_id,
+      carDetailsGrid,
       errors: null,
     });
   }

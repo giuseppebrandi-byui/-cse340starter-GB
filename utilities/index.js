@@ -165,10 +165,11 @@ Util.buildSingleVehiclePage = async function (vehicle, locals = null) {
 /***************************************
  * Build the inquiry form
 ************************************* */
-  carDetailsGrid += "<hr>"; // Close
-  carDetailsGrid += '<div class="grid grid--2-cols">';
-  carDetailsGrid += '<div class="inquiry-form">';
-  carDetailsGrid += `<form id="inquiryForm" method="post" action="/inv/inquiry">
+    carDetailsGrid += "<hr>"; // Close
+    carDetailsGrid += '<div class="grid grid--2-cols">';
+    carDetailsGrid += '<div class="inquiry-form">';
+  if (locals) {
+    carDetailsGrid += `<form id="inquiryForm" method="post" action="/inv/inquiry">
     <fieldset>
       <legend>Your inquiry</legend>
       <label class="top" for="fName"
@@ -176,9 +177,9 @@ Util.buildSingleVehiclePage = async function (vehicle, locals = null) {
         <input
           type="text"
           id="fName"
-          name="account_firstname"
+          name="inquiry_firstname"
           required
-          value="Giuseppe Elia"
+          value="${locals.account_firstname}"
       /></label>
       <br />
       <label class="top" for="lName"
@@ -186,9 +187,9 @@ Util.buildSingleVehiclePage = async function (vehicle, locals = null) {
         <input
           type="text"
           id="lName"
-          name="account_lastname"
+          name="inquiry_lastname"
           required
-          value="Brandi"
+          value="${locals.account_lastname}"
       /></label>
       <br />
       <label class="top" for="email"
@@ -196,21 +197,32 @@ Util.buildSingleVehiclePage = async function (vehicle, locals = null) {
         <input
           type="email"
           id="email"
-          name="account_email"
+          name="inquiry_email"
           required
           placeholder="Enter a valid email address"
-          value="info@thesuccesscreed.co.uk"
+          value="${locals.account_email}"
       /></label>
         <br />
       <label class="top" for="inquiry">Your Message 
-      <textarea id="inquiry" name="inquiry" rows="4">You must be logged in to send a message</textarea></label>
+      <textarea id="inquiry" name="inquiry_message" rows="4" placeholder="Type here your inquiry!">${ locals.inquiry_message ?? ''}</textarea></label>
 
       <br />
+      <input
+        type="hidden"
+        name="inv_id"
+        value="${vehicle.inv_id}"        
+      >
       <input type="submit" value="Submit" class="submitBtn" />
     </fieldset>
   </form>`
+  } else { 
+      carDetailsGrid += '<div class="inquiry-info">';
+      carDetailsGrid += '<h3>Do you want to make an inquiry?</h3>';
+      carDetailsGrid += '<a href="/account/login">You must be logged in to send a message</a>';
+      carDetailsGrid += '</div>';
+  }
   carDetailsGrid += '</div>';
-  
+
   carDetailsGrid += '<div class="inquiry-info">';
   carDetailsGrid += '<h3>Are you interested?</h3>';
   carDetailsGrid += '<p>Should you need more information about this particular car, please complete the inquiry form and our team will contact you withing the next 24 hours.</p>';
@@ -280,6 +292,7 @@ Util.checkAccountType = (req, res, next) => {
      return res.redirect("/account/login");
   }
 };
+
 
 /* ****************************************
  *  Check Login

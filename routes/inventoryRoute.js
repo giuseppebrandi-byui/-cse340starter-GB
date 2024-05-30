@@ -9,6 +9,8 @@ const inventoryValidate = require("../utilities/addinventory-validation");
 const classificationController = require("../controllers/classificationController");
 const classificationControllerC = require("../controllers/classificationControllerC");
 const selectController = require("../controllers/selectController");
+const inquiryValidate = require("../utilities/inquiry-validation");
+const inquiryController = require("../controllers/inquiryController");
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
@@ -69,10 +71,16 @@ router.get(
 router.post(
   "/update/",
   utilities.checkAccountType,
+  inventoryValidate.addNewInventoryRules(),
   inventoryValidate.checkUpdateData,
-  inventoryValidate.addNewInventoryRules,
   utilities.handleErrors(invController.updateInventory));
 
-
+// Route to inquiry
+router.post(
+  "/inquiry/",
+  utilities.checkLogin,
+  inquiryValidate.InquiryRules(),
+  inquiryValidate.checkInquiryData,
+  utilities.handleErrors(inquiryController.registerInquiry));
 
 module.exports = router;

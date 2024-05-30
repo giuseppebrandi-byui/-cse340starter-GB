@@ -1,12 +1,12 @@
 const utilities = require(".");
-const accountModel = require("../models/account-model");
+const vehicleModel = require("../models/vehicle-model");
 const { body, validationResult } = require("express-validator");
 const validate = {};
 
 /*  **********************************
  *  Inquiry Validation Rules
  * ********************************* */
-validate.registationRules = () => {
+validate.InquiryRules = () => {
   return [
     // firstname is required and must be string
     body("inquiry_firstname")
@@ -36,7 +36,7 @@ validate.registationRules = () => {
       .escape()
       .notEmpty()
       .isLength({ min: 10 })
-      .withMessage("Please provide a message."), // on error this message is sent.  
+      .withMessage("Please provide a message.")// on error this message is sent.
   ];
 };
 
@@ -44,22 +44,29 @@ validate.registationRules = () => {
  * Check inquiry data and return errors
  * ***************************** */
 validate.checkInquiryData = async (req, res, next) => {
-  const { inquiry_firstname, inquiry_lastname, inquiry_email, inquiry_message } = req.body;
+  const { inquiry_firstname, inquiry_lastname, inquiry_email, inquiry_message, inv_id } = req.body;
+  console.log("0", inquiry_firstname, inquiry_lastname, inquiry_email, inquiry_message, inv_id);
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
+    console.log(errors);
     let nav = await utilities.getNav();
-    res.render("inv/detail", {
-      errors,
-      title: "Inquiry",
+    const data = await vehicleModel.getvehicleById(inv_id);
+    const carDetailsGrid = await utilities.buildSingleVehiclePage(data, res.locals.accountData);
+    res.render("inventory/vehicle", {
+      title: "Your Car",
       nav,
       inquiry_firstname,
       inquiry_lastname,
       inquiry_email,
       inquiry_message,
+      inv_id,
+      carDetailsGrid,
+      errors,
     });
     return;
   }
+  console.log("Validation 3");
   next();
 };
 
