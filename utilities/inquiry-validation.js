@@ -45,11 +45,9 @@ validate.InquiryRules = () => {
  * ***************************** */
 validate.checkInquiryData = async (req, res, next) => {
   const { inquiry_firstname, inquiry_lastname, inquiry_email, inquiry_message, inv_id } = req.body;
-  console.log("0", inquiry_firstname, inquiry_lastname, inquiry_email, inquiry_message, inv_id);
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
-    console.log(errors);
     let nav = await utilities.getNav();
     const data = await vehicleModel.getvehicleById(inv_id);
     const carDetailsGrid = await utilities.buildSingleVehiclePage(data, res.locals.accountData);
@@ -66,7 +64,6 @@ validate.checkInquiryData = async (req, res, next) => {
     });
     return;
   }
-  console.log("Validation 3");
   next();
 };
 

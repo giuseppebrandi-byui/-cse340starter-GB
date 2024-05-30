@@ -30,8 +30,8 @@ invCont.buildManagementView = async function (req, res, next) {
   res.render("./inventory/management", {
     title: "Vehicle Management",
     nav,
-    errors: null,
     selectMenu,
+    errors: null,
   });
 };
 

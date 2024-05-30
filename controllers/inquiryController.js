@@ -19,7 +19,6 @@ async function registerInquiry(req, res) {
     inquiry_message,
     inv_id,
   } = req.body;
-  console.log("10", inquiry_firstname, inquiry_lastname, inquiry_email, inquiry_message);
   const regInquiry = await inquiryModel.registerInquiry(
     inquiry_firstname,
     inquiry_lastname,
@@ -27,7 +26,6 @@ async function registerInquiry(req, res) {
     inquiry_message,
     inv_id,
   );
-  console.log("100", regInquiry);
   if (regInquiry) {
     req.flash(
       "notice",
