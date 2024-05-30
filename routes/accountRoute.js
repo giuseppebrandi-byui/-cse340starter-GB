@@ -79,5 +79,4 @@ router.get(
   utilities.handleErrors(accountController.accountLogout)
 )
 
-
 module.exports = router;
